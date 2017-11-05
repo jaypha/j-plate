@@ -1,0 +1,18 @@
+{
+  "name": "jaypha/j-plate",
+  "description": "Hierarchical components incorporating a PHP based template engine",
+  "type": "library",
+  "license": "BSL-1.0",
+  "require": {
+    "php": "^5.4 || ^7"
+  },
+  "autoload" : {
+    "psr-4": { "Jaypha\\": "src/" }
+  },
+  "authors": [
+    {
+      "name": "Jason den Dulk",
+      "role": "Developer"
+    }
+  ]
+}

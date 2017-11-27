@@ -8,16 +8,15 @@ namespace Jaypha;
 class Component
 {
   protected $__template;
-  protected $__vars = [];
+  protected $__vars;
 
-  function __construct(string $t = "", array $initialData = [])
+  function __construct(string $t = null, array $initialData = [])
   {
     $this->__template = $t;
-    foreach ($initialData as $i=>$v)
-      $this->$i = $v;
+    $this->__vars = $initialData;
   }
 
-  function setTemplate(string $t)  { $this->__template = $t; }
+  function setTemplate(string $t = null)  { $this->__template = $t; }
   function setVars(array $v) { $this->__vars = $v; }
 
   function __set($p, $v) { $this->__vars[$p] = $v; }

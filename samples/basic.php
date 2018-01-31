@@ -8,7 +8,7 @@ use \Jaypha\Component;
 require "../src/Component.php";
 
 $page = new Component("template.tpl");
-$page->title = "User Profile";
+$page->set("title", "User Profile");
 
 
 $content = new Component(
@@ -16,7 +16,7 @@ $content = new Component(
   [ "name" => "Jonathon", "word" => "serendipity" ]
 );
 
-$page->content = $content;
+$page->set("content", $content);
 
 echo $page;
 

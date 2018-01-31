@@ -19,7 +19,12 @@ class Component
   function setTemplate(string $t = null)  { $this->__template = $t; }
   function setVars(array $v) { $this->__vars = $v; }
 
-  function __set($p, $v) { $this->__vars[$p] = $v; }
+  function set(string $p, $v) { $this->__vars[$p] = $v; }
+  function add($v) { $this->__vars[] = $v; }
+
+  //-----------------------------------
+
+  function display() { $this->__display(); }
 
   protected function __display() {
     if ($this->__template)  {
@@ -37,7 +42,7 @@ class Component
     }
   }
 
-  function display() { $this->__display(); }
+  //-----------------------------------
 
   function __toString() {
     ob_start();

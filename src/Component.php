@@ -7,34 +7,41 @@ namespace Jaypha;
 
 class Component
 {
-  protected $__template;
-  protected $__vars;
+  protected $_template;
+  protected $_vars;
 
   function __construct(string $t = null, array $initialData = [])
   {
-    $this->__template = $t;
-    $this->__vars = $initialData;
+    $this->_template = $t;
+    $this->_vars = $initialData;
   }
 
-  function setTemplate(string $t = null)  { $this->__template = $t; }
-  function setVars(array $v) { $this->__vars = $v; }
+  function setTemplate(string $t = null)  { $this->_template = $t; }
+  function setVars(array $v) { $this->_vars = $v; }
 
-  function set(string $p, $v) { $this->__vars[$p] = $v; }
-  function add($v) { $this->__vars[] = $v; }
+  function set(string $p, $v) { $this->_vars[$p] = $v; }
+  function remove($p)  { unset($this->_vars[$p]); }
+  function add($v) { $this->_vars[] = $v; }
+  function clear() { $this->_vars = []; }
 
   //-----------------------------------
 
-  function display() { $this->__display(); }
+  function display() { $this->displayInner(); }
 
-  protected function __display() {
-    if ($this->__template)  {
+  // Deprecated
+  protected function __display() { $this->displayInner(); }
+
+
+  // This mechanism allows two stage display
+  protected function displayInner() {
+    if ($this->_template)  {
       // Get the layout from a template file
-      extract($this->__vars);
-      include($this->__template);
+      extract($this->_vars);
+      include($this->_template);
     }
     else {
       // Echo each child in order
-      foreach ($this->__vars as &$child)
+      foreach ($this->_vars as &$child)
         if ($child instanceof Component)
           $child->display();
         else

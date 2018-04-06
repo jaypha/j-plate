@@ -10,17 +10,17 @@ namespace Jaypha;
 
 trait TextComponentTrait
 {
-  function __display()
+  function displayInner()
   {
-    if ($this->__template)
+    if ($this->_template)
     {
       // Get the layout from a text template
-      extract($this->__vars);
-      eval("?>$this->__template");
+      extract($this->_vars);
+      eval("?>$this->_template");
     }
     else
     {
-      parent::__display();
+      parent::displayInner();
     }
   }
 }

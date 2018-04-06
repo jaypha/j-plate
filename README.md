@@ -43,7 +43,7 @@ Constructor for the `Component` class.
 `$initialData` - Associative array for values to be used. May be non-associative
 if no template is provided.
 
-`void setTemplate(string $template)`
+`void setTemplate(string $template = null)`
 Sets the template file
 
 `void setVars(array $values)`
@@ -52,8 +52,14 @@ Sets all the values.
 `void set(string $name, mixed $value)`
 Sets a single value
 
+`void remove(mixed $name)`
+Removes a value stored under $name.
+
 `void add(mixed $value)`
 Adds a value without a name. Use when no template is being used.
+
+`void clear()`
+Removes all values.
 
 `void display()`
 Outputs the contents to the output context.
